@@ -1,0 +1,23 @@
+version: "3.5"
+
+# projects we want images and containers for
+services:
+  api:
+    build: ./api
+    container_name: api_c
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./api:/app
+      - ./app/node_modules
+  myblog:
+    build: ./myblog
+    container_name: myblog_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./myblog:/app
+      - ./myblog/node_modules
+      # start react in interactive mode, oposite of detached mode
+    stdin_open: true
+    tty: true
